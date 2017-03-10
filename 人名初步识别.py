@@ -1,11 +1,11 @@
 import pandas as pd
 import thulac
 names = ['rybh','xm','bj','wz1','wz2','ajbh','afsj','afdd','jyaq']
-df = pd.read_table('D:\\pydata-book-master\\rongliuanqing2.csv',names = names)
+df = pd.read_table('D:\\pydata-book-master\\rongliuanqing2.csv',names = names)##自定义输入路径
 text_list = pd.Series(df['jyaq']).drop_duplicates()#简要案情去重
 thu1 = thulac.thulac()
 #dic = {}
-ot = open('D:\\pydata-book-master\\rlxd.txt','a')
+ot = open('D:\\pydata-book-master\\rlxd.txt','a')##自定义输出路径
 for x in text_list:
     words = thu1.cut(x)
     name = [word[0] for word in words if word[1]=='np']
