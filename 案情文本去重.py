@@ -19,10 +19,10 @@ rlaq_u2 = rlaq_u.loc[:,['id','ajbh','time','place','jyaq']].groupby(['ajbh','jya
 rlaq_u2.loc[:,'time'] = rlaq_u2.loc[:,'time'].str.slice(0,10)
 
 #增加一列time1用于去重
-time1=rlaq_u2.loc[:,'jyaq'].str.extract('([0-9]{4}年[0-9]{1,2}月[0-9]{1,2}日|号)',expand=False)
-time1[time1.isnull()]=rlaq_u2.loc[:,'jyaq'][time1.isnull()].str.slice(0,12)
-rlaq_u2['time1']=time1
-rlaq_u2=rlaq_u2.groupby(['id','time1']).last().reset_index()
+time1 = rlaq_u2.loc[:,'jyaq'].str.extract('([0-9]{4}年[0-9]{1,2}月[0-9]{1,2}日|号)',expand=False)
+time1[time1.isnull()] = rlaq_u2.loc[:,'jyaq'][time1.isnull()].str.slice(0,12)
+rlaq_u2['time1'] = time1
+rlaq_u2 = rlaq_u2.groupby(['id','time1']).last().reset_index()
 
 
 #rlaq_u2.to_csv('rlaq_u2.csv',index=False)
