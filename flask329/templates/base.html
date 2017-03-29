@@ -4,9 +4,21 @@
 
 {% block head %}
 {{ super() }}
-<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+<meta charset='utf8' />
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<title>容留吸毒社会网络分析</title>
+<meta name='description' content='' />
+<meta name='keywords' content='' />
+<meta name='author' content='hlzhang' />
+<link rel='shortcut icon' href=''>
+<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="shortcut icon" href="{{ url_for('static', filename='logo2.png') }}" type="image/x-icon">
+<link rel="icon" href="{{ url_for('static', filename='logo2.png') }}" type="image/x-icon">
 {% endblock %}
+
 
 {% block navbar %}
 <div class="navbar navbar-inverse" role="navigation">
