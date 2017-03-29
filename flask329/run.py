@@ -219,23 +219,24 @@ def index():
         rl = slct['RL'].replace('[','').replace(']','').replace(' ','').split(u'\uff0c')
         brl = slct['BRL'].replace('[','').replace(']','').replace(' ','').split(u'\uff0c')
         xy = slct['XY'].replace('[','').replace(']','').replace(' ','').split(u'\uff0c')
-        print slct
-        print rl
-        print brl
-        print xy
         people = list(set(rl + brl + xy))
         people = [p for p in people if len(p)>0]
         pat = ('('+ '|'.join(people)+')')
+        pat = pat.encode('utf8')
+        # num1 = [i for i,v in enumerate(resultDf.RL) if len(re.findall(pat, v))>0]
+        # num2 = [i for i,v in enumerate(resultDf.BRL) if len(re.findall(pat, v))>0]
+        # num3 = [i for i,v in enumerate(resultDf.XY) if len(re.findall(pat, v))>0]
+        # num = list(set(num1 + num2 +num3))
         num1 = resultDf.RL.str.contains(pat)
         num2 = resultDf.BRL.str.contains(pat)
         num3 = resultDf.XY.str.contains(pat)
         num = [(num1[i] or num2[i] or num3[i]) for i in range(nrow)]
         num = [i for i,v in enumerate(num) if v==True]
+        print num
 
         ##根据地点关联
         d0 = slct['DD'].replace('[','').replace(']','').replace(' ','').split(u'\uff0c')[0]
         d0 = d0.decode('utf8')
-        print d0
         near = ['NULL', 'NULL']
         if len(d0)>0:
             near = nearby(dataSet, d0,10, 1)
@@ -255,7 +256,10 @@ def index():
         nodes[d0] = {'id':d0, 'size': 3, 'group': 4, 'class': u'案发地点', 'num': -1, 'dist': 0}
         if len(d0)==0:
             nodes[d0]['id'] = u'本案案发地(未知)'
-            edges.append({'source': 'AJ'+slct.AJBH[-8:], 'target': u'本案案发地(未知)', 'value': 1})
+            nodes[u'AJ本案'] = {'id': u'AJ本案', 'size': len(people), 'group': 0, 'class': u'案件', 'num': -1, 'wzbh': u'无案件编号'}
+            edges.append({'source': u'AJ本案', 'target': u'本案案发地(未知)', 'value': 1})
+            for p in people:
+                edges.append({'source': u'AJ本案', 'target': p, 'value': 1})
 
         for i in range(nrow2):
             aj = 'AJ'+ajbh[i][-8:]
@@ -311,7 +315,11 @@ def index():
         info = {}
         for item in nodes.items():
             if item[1]['class'] == u'案件':
-                info[item[0]] = {'name': item[0], u'案件编号': item[1]['wzbh'], u'简要案情': jyaq[item[1]['num']]}
+                #判断是否‘AJ本案’
+                if item[1]['num'] == -1:
+                    info[item[0]] = {'name': item[0], u'案件编号': item[1]['wzbh'], u'简要案情': content}
+                else:
+                    info[item[0]] = {'name': item[0], u'案件编号': item[1]['wzbh'], u'简要案情': jyaq[item[1]['num']]}
             elif item[1]['class'] == u'案发地点':
                 if 'dist' in item[1].keys():
                     info[item[0]] = {'name': item[0], u'与本案距离': str(round(item[1]['dist']*1000))+u'米'}
