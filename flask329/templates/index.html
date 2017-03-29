@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 {% import "bootstrap/wtf.html" as wtf %}
 
 <head>
@@ -121,6 +120,7 @@ body {
     width: 200px;
     background-color: #666;
 }
+
 #info {
     position: absolute;
     top: 220px;
@@ -128,459 +128,486 @@ body {
     text-align: right;
     width: 270px;
 }
-#info h1,h2,h4 {
+
+#info h1,
+h2,
+h4 {
     color: #fff;
 }
+
 #info p {
     color: #fff;
     font-size: 12px;
     margin-bottom: 5px;
 }
+
 #info p span {
     color: #888;
     margin-right: 10px;
 }
+
 #svg2 g.row:hover {
     stroke-width: 1px;
     stroke: #fff;
 }
 
+h1,
+h2,
+h3,
+h4 {
+    color: #fff
+}
 
-ul#nav{ width:100%; height:60px; background:#333333;margin:0 auto} 
-ul#nav li{display:inline; height:60px; margin:0 15px 0 -15px} 
-ul#nav li a{display:inline-block; padding:0 20px 0 0; height:60px; line-height:60px;
- color:#fff; font-family:"\5FAE\8F6F\96C5\9ED1"; font-size:16px; text-decoration:none;} 
-ul#nav li a:hover{color:#65B9DC;}/*设置鼠标滑过或悬停时变化的背景颜色*/ 
+ul#nav {
+    width: 100%;
+    height: 60px;
+    background: #333333;
+    margin: 0 auto
+}
 
+ul#nav li {
+    display: inline;
+    height: 60px;
+    margin: 0 15px 0 -15px
+}
+
+ul#nav li a {
+    display: inline-block;
+    padding: 0 20px 0 0;
+    height: 60px;
+    line-height: 60px;
+    color: #fff;
+    font-family: "\5FAE\8F6F\96C5\9ED1";
+    font-size: 16px;
+    text-decoration: none;
+}
+
+ul#nav li a:hover {
+    color: #65B9DC;
+}
+
+
+/*设置鼠标滑过或悬停时变化的背景颜色*/
 </style>
 
-
 <body>
-
-<div style="width:1400px;margin:0 auto;">
-
-<!-- 导航栏 -->
-<div class="navbar navbar-inverse" role="navigation">
-    <ul id="nav"> 
-        <li><a href="/">首页</a></li> 
-        <li><a href="#yaosu">Element</a></li> 
-        <li><a href="#network">Network</a></li> 
-    </ul> 
-</div>
-
-
-<!-- 案情要素提取 -->
-<div class="page-header">
-    <h1 id='yaosu'>容留吸毒案情要素提取</h1>
-</div>
-{{ wtf.quick_form(form) }}
-<hr>
-
-<div style="width:33%;float:left;">
-    <h3>出警时间：</h3>
-    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px;">
-        {% if result['CJ']|length==0 %}
-            <p>未知</p>
-        {% else %}
-            <p>{{ result['CJ'] }}</p>
-        {% endif %}
-    </div>
-</div>
-<div style="width:33%;float:left;padding-left:1%;">
-    <h3>案发时间：</h3>
-    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px;">
-        {% if result['AF']|length==0 %}
-            <p>未知</p>
-        {% else %}
-            <p>{{ result['AF'] }}</p>
-        {% endif %}
-    </div>
-</div>
-<div style="width:33%;float:right;">
-    <h3>案发地点：</h3>
-    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px;">
-        {% if result['DD']|length==0 %}
-            <p>未知</p>
-        {% else %}
-            <p>{{ result['DD'] }}</p>
-        {% endif %}
-    </div>
-</div>
-<div style="width:33%;float:left;">
-    <h3>容留者：</h3>
-    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px">
-        {% if result['RL']|length==0 %}
-            <p>未知</p>
-        {% else %}
-            <p>{{ result['RL'] }}</p>
-        {% endif %}
-    </div>
-</div>
-<div style="width:33%;float:left;padding-left:1%;">
-    <h3>被容留者：</h3>
-    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px;">
-        {% if result['BRL']|length==0 %}
-            <p>未知</p>
-        {% else %}
-            <p>{{ result['BRL'] }}</p>
-        {% endif %}
-    </div>
-</div>
-<div style="width:33%;float:right;">
-    <h3>其他嫌疑人：</h3>
-    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px">
-        {% if result['XY']|length==0 %}
-            <p>未知</p>
-        {% else %}
-            <p>{{ result['XY'] }}</p>
-        {% endif %}
-    </div>
-</div>
-<div style="width:33%;float:left;">
-    <h3>毒品名称：</h3>
-    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px;">
-        {% if result['DP']|length==0 %}
-            <p>未知</p>
-        {% else %}
-            <p>{{ result['DP'] }}</p>
-        {% endif %}
-    </div>
-</div>
-<div style="width:33%;float:left;padding-left:1%;">
-    <h3>吸毒工具：</h3>
-    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px">
-        {% if result['GJ']|length==0 %}
-            <p>未知</p>
-        {% else %}
-
-            <p>{{ result['GJ'] }}</p>
-        {% endif %}
-    </div>
-</div>
-<div style="width:33%;float:right;">
-    <h3>其它关键词：</h3>
-    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px;">
-        {% if keywords|length==0 %}
-            <p>无</p>
-        {% else %}
-            <p>{{ keywords }}</p>
-        {% endif %}
-    </div>
-</div>
-<div style="clear:both"></div>
-<div style="height:30px"></div>
-
-<!-- 社会网络图 -->
-<div style="background-color:#333333">
-<h1 id='network' style="color:#fff;font-size:32px;margin-bottom:0px;text-align:left;margin-left:40px;padding-top:20px;margin-left:20px">
+    <div style="width:1400px;margin:0 auto;">
+        <!-- 导航栏 -->
+        <div class="navbar navbar-inverse" role="navigation">
+            <ul id="nav">
+                <li><a href="/">首页</a></li>
+                <li><a href="#yaosu">Element</a></li>
+                <li><a href="#network">Network</a></li>
+            </ul>
+        </div>
+        <!-- 案情要素提取 -->
+        <div style="background-color:#333333">
+            <div style="width:1360px;margin:0 auto;">
+                <h1 id='yaosu' style="padding-top:20px">容留吸毒案情要素提取</h1> {{ wtf.quick_form(form) }}
+                <hr style="border:0">
+                <div style="width:33%;float:left;">
+                    <h3>出警时间：</h3>
+                    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px;">
+                        {% if result['CJ']|length==0 %}
+                        <p>未知</p>
+                        {% else %}
+                        <p>{{ result['CJ'] }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="width:33%;float:left;padding-left:1%;">
+                    <h3>案发时间：</h3>
+                    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px;">
+                        {% if result['AF']|length==0 %}
+                        <p>未知</p>
+                        {% else %}
+                        <p>{{ result['AF'] }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="width:33%;float:right;">
+                    <h3>案发地点：</h3>
+                    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px;">
+                        {% if result['DD']|length==0 %}
+                        <p>未知</p>
+                        {% else %}
+                        <p>{{ result['DD'] }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="width:33%;float:left;">
+                    <h3>容留者：</h3>
+                    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px">
+                        {% if result['RL']|length==0 %}
+                        <p>未知</p>
+                        {% else %}
+                        <p>{{ result['RL'] }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="width:33%;float:left;padding-left:1%;">
+                    <h3>被容留者：</h3>
+                    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px;">
+                        {% if result['BRL']|length==0 %}
+                        <p>未知</p>
+                        {% else %}
+                        <p>{{ result['BRL'] }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="width:33%;float:right;">
+                    <h3>其他嫌疑人：</h3>
+                    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px">
+                        {% if result['XY']|length==0 %}
+                        <p>未知</p>
+                        {% else %}
+                        <p>{{ result['XY'] }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="width:33%;float:left;">
+                    <h3>毒品名称：</h3>
+                    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px;">
+                        {% if result['DP']|length==0 %}
+                        <p>未知</p>
+                        {% else %}
+                        <p>{{ result['DP'] }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="width:33%;float:left;padding-left:1%;">
+                    <h3>吸毒工具：</h3>
+                    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px">
+                        {% if result['GJ']|length==0 %}
+                        <p>未知</p>
+                        {% else %}
+                        <p>{{ result['GJ'] }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="width:33%;float:right;">
+                    <h3>其它关键词：</h3>
+                    <div class="output" style="background-color:#f6f6f6;height:80px;padding:10px;">
+                        {% if keywords|length==0 %}
+                        <p>无</p>
+                        {% else %}
+                        <p>{{ keywords }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+                <div style="height:30px"></div>
+            </div>
+        </div>
+        <!-- 社会网络图 -->
+        <div style="background-color:#333333">
+            <h1 id='network' style="color:#fff;font-size:32px;margin-bottom:0px;text-align:left;margin-left:40px;padding-top:20px;margin-left:20px">
     容留吸毒社会网络分析</h1>
-<div style="text-align:center;position:relative;">
-    <svg width="800" height="600" style="margin-left:80px;margin-bottom:-40px;" id="svg1"></svg>
-    <div id="indicator">
-    </div>
-    <div id="mode">
-        <span class="active" style="border-top-right-radius:0;border-bottom-right-radius:0;">Circles</span>
-        <span style="border-top-left-radius:0;border-bottom-left-radius:0;position:relative;left:-5px;">Texts</span>
-    </div>
-    <div id="search1">
-        <input type="text" class="form-control">
-    </div>
-    <div id="info">
-        <h4></h4>
-    </div>
-</div>
-</div>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-    var svg = d3.select("#svg1"),
-        width = +svg.attr("width"),
-        height = +svg.attr("height");
+            <div style="text-align:center;position:relative;">
+                <svg width="800" height="600" style="margin-left:80px;margin-bottom:-40px;" id="svg1"></svg>
+                <div id="indicator">
+                </div>
+                <div id="mode">
+                    <span class="active" style="border-top-right-radius:0;border-bottom-right-radius:0;">Circles</span>
+                    <span style="border-top-left-radius:0;border-bottom-left-radius:0;position:relative;left:-5px;">Texts</span>
+                </div>
+                <div id="search1">
+                    <input type="text" class="form-control">
+                </div>
+                <div id="info">
+                    <h4></h4>
+                </div>
+            </div>
+        </div>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            var svg = d3.select("#svg1"),
+                width = +svg.attr("width"),
+                height = +svg.attr("height");
 
-    var names = ['案件','容留者', '嫌疑', '被容留者', '案发地点'];
-    var color = d3.scaleOrdinal(d3.schemeCategory20);
-    var colors = ['#DB99EB', '#EB9999','#6194E0', '#EBE399', '#21ABAB'];
+            var names = ['案件', '容留者', '嫌疑', '被容留者', '案发地点'];
+            var color = d3.scaleOrdinal(d3.schemeCategory20);
+            var colors = ['#DB99EB', '#EB9999', '#6194E0', '#EBE399', '#21ABAB'];
 
-    for (var i = 0; i < names.length; i++) {
-        $('#indicator').append("<div><span style='background-color:" + colors[i] + "'></span>" + names[i] + "</div>");
-    }
-
-    var simulation = d3.forceSimulation()
-        .force("link", d3.forceLink().distance(50).id(function(d) {
-            return d.id;
-        }))
-        .force("charge", d3.forceManyBody())
-        .force("center", d3.forceCenter(width / 2, height / 2));
-
-    var graph;
-
-    d3.json("/data1", function(error, data) {
-        graph = data;
-        console.log(graph);
-
-        var link = svg.append("g")
-            .attr("class", "links")
-            .selectAll("line")
-            .data(graph.links)
-            .enter().append("line")
-            .attr("stroke-width", function(d) {
-                // return Math.sqrt(d.value);
-                return 1;
-            });
-
-        var node = svg.append("g")
-            .attr("class", "nodes")
-            .selectAll("circle")
-            .data(graph.nodes)
-            .enter().append("circle")
-            .attr("r", function(d) {
-                return d.size*3
-            })
-            .attr("fill", function(d) {
-                // return color(d.group);
-                return colors[d.group];
-            })
-            .attr('stroke', 'none')
-            .attr('name', function(d) {
-                return d.id;
-            })
-            .call(d3.drag()
-                .on("start", dragstarted)
-                .on("drag", dragged)
-                .on("end", dragended));
-
-        var text = svg.append("g")
-            .attr("class", "texts")
-            .selectAll("text")
-            .data(graph.nodes)
-            .enter().append("text")
-            .attr("font-size", function(d) {
-                return d.size+5
-            })
-            .attr("fill", function(d) {
-                // return color(d.group);
-                return colors[d.group];
-            })
-            .attr('name', function(d) {
-                return d.id;
-            })
-            .text(function(d) {
-                return d.id;
-            })
-            .attr('text-anchor', 'middle')
-            .call(d3.drag()
-                .on("start", dragstarted)
-                .on("drag", dragged)
-                .on("end", dragended));
-
-        node.append("title")
-            .text(function(d) {
-                return d.id;
-            });
-
-        simulation
-            .nodes(graph.nodes)
-            .on("tick", ticked);
-
-        simulation.force("link")
-            .links(graph.links);
-
-        function ticked() {
-            link
-                .attr("x1", function(d) {
-                    return d.source.x;
-                })
-                .attr("y1", function(d) {
-                    return d.source.y;
-                })
-                .attr("x2", function(d) {
-                    return d.target.x;
-                })
-                .attr("y2", function(d) {
-                    return d.target.y;
-                });
-
-            node
-                .attr("cx", function(d) {
-                    return d.x;
-                })
-                .attr("cy", function(d) {
-                    return d.y;
-                });
-
-            text.
-            attr('transform', function(d) {
-                return 'translate(' + d.x + ',' + (d.y + d.size / 2) + ')';
-            });
-        }
-    });
-    var dragging = true;
-
-    function dragstarted(d) {
-        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-        d.fx = d.x;
-        d.fy = d.y;
-        dragging = true;
-    }
-
-    function dragged(d) {
-        d.fx = d3.event.x;
-        d.fy = d3.event.y;
-    }
-
-    function dragended(d) {
-        if (!d3.event.active) simulation.alphaTarget(0);
-        d.fx = null;
-        d.fy = null;
-        dragging = false;
-    }
-
-    $('#mode span').click(function(event) {
-        $('#mode span').removeClass('active');
-        $(this).addClass('active');
-        if ($(this).text() == 'Circles') {
-            $('.texts text').hide();
-            $('.nodes circle').show();
-        } else {
-            $('.texts text').show();
-            $('.nodes circle').hide();
-        }
-    });
-
-    $('#svg1').on('mouseenter', '.nodes circle', function(event) {
-        if (!dragging) {
-            var name = $(this).attr('name');
-
-            $('#info h4').css('color', $(this).attr('fill')).text(name);
-            $('#info p').remove();
-            for (var key in info[name]) {
-                if (typeof(info[name][key]) == 'object') {
-                    continue;
-                }
-                if (key == 'url' || key == 'title' || key == 'name' || key == 'edited' || key == 'created' || key == 'homeworld') {
-                    continue;
-                }
-                $('#info').append('<p><span>' + key + '</span>' + info[name][key] + '</p>');
+            for (var i = 0; i < names.length; i++) {
+                $('#indicator').append("<div><span style='background-color:" + colors[i] + "'></span>" + names[i] + "</div>");
             }
 
-            d3.select('#svg1 .nodes').selectAll('circle').attr('class', function(d) {
-                if (d.id == name) {
-                    return '';
-                }
+            var simulation = d3.forceSimulation()
+                .force("link", d3.forceLink().distance(50).id(function(d) {
+                    return d.id;
+                }))
+                .force("charge", d3.forceManyBody())
+                .force("center", d3.forceCenter(width / 2, height / 2));
 
-                for (var i = 0; i < graph.links.length; i++) {
-                    if (graph.links[i]['source'].id == name && graph.links[i]['target'].id == d.id) {
-                        return '';
-                    }
-                    if (graph.links[i]['target'].id == name && graph.links[i]['source'].id == d.id) {
-                        return '';
-                    }
+            var graph;
+
+            d3.json("/data1", function(error, data) {
+                graph = data;
+                console.log(graph);
+
+                var link = svg.append("g")
+                    .attr("class", "links")
+                    .selectAll("line")
+                    .data(graph.links)
+                    .enter().append("line")
+                    .attr("stroke-width", function(d) {
+                        // return Math.sqrt(d.value);
+                        return 1;
+                    });
+
+                var node = svg.append("g")
+                    .attr("class", "nodes")
+                    .selectAll("circle")
+                    .data(graph.nodes)
+                    .enter().append("circle")
+                    .attr("r", function(d) {
+                        return d.size * 3
+                    })
+                    .attr("fill", function(d) {
+                        // return color(d.group);
+                        return colors[d.group];
+                    })
+                    .attr('stroke', 'none')
+                    .attr('name', function(d) {
+                        return d.id;
+                    })
+                    .call(d3.drag()
+                        .on("start", dragstarted)
+                        .on("drag", dragged)
+                        .on("end", dragended));
+
+                var text = svg.append("g")
+                    .attr("class", "texts")
+                    .selectAll("text")
+                    .data(graph.nodes)
+                    .enter().append("text")
+                    .attr("font-size", function(d) {
+                        return d.size + 5
+                    })
+                    .attr("fill", function(d) {
+                        // return color(d.group);
+                        return colors[d.group];
+                    })
+                    .attr('name', function(d) {
+                        return d.id;
+                    })
+                    .text(function(d) {
+                        return d.id;
+                    })
+                    .attr('text-anchor', 'middle')
+                    .call(d3.drag()
+                        .on("start", dragstarted)
+                        .on("drag", dragged)
+                        .on("end", dragended));
+
+                node.append("title")
+                    .text(function(d) {
+                        return d.id;
+                    });
+
+                simulation
+                    .nodes(graph.nodes)
+                    .on("tick", ticked);
+
+                simulation.force("link")
+                    .links(graph.links);
+
+                function ticked() {
+                    link
+                        .attr("x1", function(d) {
+                            return d.source.x;
+                        })
+                        .attr("y1", function(d) {
+                            return d.source.y;
+                        })
+                        .attr("x2", function(d) {
+                            return d.target.x;
+                        })
+                        .attr("y2", function(d) {
+                            return d.target.y;
+                        });
+
+                    node
+                        .attr("cx", function(d) {
+                            return d.x;
+                        })
+                        .attr("cy", function(d) {
+                            return d.y;
+                        });
+
+                    text.
+                    attr('transform', function(d) {
+                        return 'translate(' + d.x + ',' + (d.y + d.size / 2) + ')';
+                    });
                 }
-                return 'inactive';
             });
-            d3.select("#svg1 .links").selectAll('line').attr('class', function(d) {
-                if (d.source.id == name || d.target.id == name) {
-                    return '';
-                } else {
-                    return 'inactive';
-                }
-            });
-        }
-    });
+            var dragging = true;
 
-    $('#svg1').on('mouseleave', '.nodes circle', function(event) {
-        if (!dragging) {
-            d3.select('#svg1 .nodes').selectAll('circle').attr('class', '');
-            d3.select('#svg1 .links').selectAll('line').attr('class', '');
-        }
-    });
-
-    $('#svg1').on('mouseenter', '.texts text', function(event) {
-        if (!dragging) {
-            var name = $(this).attr('name');
-
-            $('#info h4').css('color', $(this).attr('fill')).text(name);
-            $('#info p').remove();
-            for (var key in info[name]) {
-                if (typeof(info[name][key]) == 'object') {
-                    continue;
-                }
-                if (key == 'url' || key == 'title' || key == 'name' || key == 'edited' || key == 'created' || key == 'homeworld') {
-                    continue;
-                }
-                $('#info').append('<p><span>' + key + '</span>' + info[name][key] + '</p>');
+            function dragstarted(d) {
+                if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+                dragging = true;
             }
 
-            d3.select('#svg1 .texts').selectAll('text').attr('class', function(d) {
-                if (d.id == name) {
-                    return '';
-                }
+            function dragged(d) {
+                d.fx = d3.event.x;
+                d.fy = d3.event.y;
+            }
 
-                for (var i = 0; i < graph.links.length; i++) {
-                    if (graph.links[i]['source'].id == name && graph.links[i]['target'].id == d.id) {
-                        return '';
+            function dragended(d) {
+                if (!d3.event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+                dragging = false;
+            }
+
+            $('#mode span').click(function(event) {
+                $('#mode span').removeClass('active');
+                $(this).addClass('active');
+                if ($(this).text() == 'Circles') {
+                    $('.texts text').hide();
+                    $('.nodes circle').show();
+                } else {
+                    $('.texts text').show();
+                    $('.nodes circle').hide();
+                }
+            });
+
+            $('#svg1').on('mouseenter', '.nodes circle', function(event) {
+                if (!dragging) {
+                    var name = $(this).attr('name');
+
+                    $('#info h4').css('color', $(this).attr('fill')).text(name);
+                    $('#info p').remove();
+                    for (var key in info[name]) {
+                        if (typeof(info[name][key]) == 'object') {
+                            continue;
+                        }
+                        if (key == 'url' || key == 'title' || key == 'name' || key == 'edited' || key == 'created' || key == 'homeworld') {
+                            continue;
+                        }
+                        $('#info').append('<p><span>' + key + '</span>' + info[name][key] + '</p>');
                     }
-                    if (graph.links[i]['target'].id == name && graph.links[i]['source'].id == d.id) {
-                        return '';
+
+                    d3.select('#svg1 .nodes').selectAll('circle').attr('class', function(d) {
+                        if (d.id == name) {
+                            return '';
+                        }
+
+                        for (var i = 0; i < graph.links.length; i++) {
+                            if (graph.links[i]['source'].id == name && graph.links[i]['target'].id == d.id) {
+                                return '';
+                            }
+                            if (graph.links[i]['target'].id == name && graph.links[i]['source'].id == d.id) {
+                                return '';
+                            }
+                        }
+                        return 'inactive';
+                    });
+                    d3.select("#svg1 .links").selectAll('line').attr('class', function(d) {
+                        if (d.source.id == name || d.target.id == name) {
+                            return '';
+                        } else {
+                            return 'inactive';
+                        }
+                    });
+                }
+            });
+
+            $('#svg1').on('mouseleave', '.nodes circle', function(event) {
+                if (!dragging) {
+                    d3.select('#svg1 .nodes').selectAll('circle').attr('class', '');
+                    d3.select('#svg1 .links').selectAll('line').attr('class', '');
+                }
+            });
+
+            $('#svg1').on('mouseenter', '.texts text', function(event) {
+                if (!dragging) {
+                    var name = $(this).attr('name');
+
+                    $('#info h4').css('color', $(this).attr('fill')).text(name);
+                    $('#info p').remove();
+                    for (var key in info[name]) {
+                        if (typeof(info[name][key]) == 'object') {
+                            continue;
+                        }
+                        if (key == 'url' || key == 'title' || key == 'name' || key == 'edited' || key == 'created' || key == 'homeworld') {
+                            continue;
+                        }
+                        $('#info').append('<p><span>' + key + '</span>' + info[name][key] + '</p>');
                     }
+
+                    d3.select('#svg1 .texts').selectAll('text').attr('class', function(d) {
+                        if (d.id == name) {
+                            return '';
+                        }
+
+                        for (var i = 0; i < graph.links.length; i++) {
+                            if (graph.links[i]['source'].id == name && graph.links[i]['target'].id == d.id) {
+                                return '';
+                            }
+                            if (graph.links[i]['target'].id == name && graph.links[i]['source'].id == d.id) {
+                                return '';
+                            }
+                        }
+                        return 'inactive';
+                    });
+                    d3.select("#svg1 .links").selectAll('line').attr('class', function(d) {
+                        if (d.source.id == name || d.target.id == name) {
+                            return '';
+                        } else {
+                            return 'inactive';
+                        }
+                    });
                 }
-                return 'inactive';
             });
-            d3.select("#svg1 .links").selectAll('line').attr('class', function(d) {
-                if (d.source.id == name || d.target.id == name) {
-                    return '';
+
+            $('#svg1').on('mouseleave', '.texts text', function(event) {
+                if (!dragging) {
+                    d3.select('#svg1 .texts').selectAll('text').attr('class', '');
+                    d3.select('#svg1 .links').selectAll('line').attr('class', '');
+                }
+            });
+
+            $('#search1 input').keyup(function(event) {
+                if ($(this).val() == '') {
+                    d3.select('#svg1 .texts').selectAll('text').attr('class', '');
+                    d3.select('#svg1 .nodes').selectAll('circle').attr('class', '');
+                    d3.select('#svg1 .links').selectAll('line').attr('class', '');
                 } else {
-                    return 'inactive';
+                    var name = $(this).val();
+                    d3.select('#svg1 .nodes').selectAll('circle').attr('class', function(d) {
+                        if (d.id.toLowerCase().indexOf(name.toLowerCase()) >= 0) {
+                            return '';
+                        } else {
+                            return 'inactive';
+                        }
+                    });
+                    d3.select('#svg1 .texts').selectAll('text').attr('class', function(d) {
+                        if (d.id.toLowerCase().indexOf(name.toLowerCase()) >= 0) {
+                            return '';
+                        } else {
+                            return 'inactive';
+                        }
+                    });
+                    d3.select("#svg1 .links").selectAll('line').attr('class', function(d) {
+                        return 'inactive';
+                    });
                 }
             });
-        }
-    });
 
-    $('#svg1').on('mouseleave', '.texts text', function(event) {
-        if (!dragging) {
-            d3.select('#svg1 .texts').selectAll('text').attr('class', '');
-            d3.select('#svg1 .links').selectAll('line').attr('class', '');
-        }
-    });
+            var info;
 
-    $('#search1 input').keyup(function(event) {
-        if ($(this).val() == '') {
-            d3.select('#svg1 .texts').selectAll('text').attr('class', '');
-            d3.select('#svg1 .nodes').selectAll('circle').attr('class', '');
-            d3.select('#svg1 .links').selectAll('line').attr('class', '');
-        } else {
-            var name = $(this).val();
-            d3.select('#svg1 .nodes').selectAll('circle').attr('class', function(d) {
-                if (d.id.toLowerCase().indexOf(name.toLowerCase()) >= 0) {
-                    return '';
-                } else {
-                    return 'inactive';
-                }
+            d3.json("/data2", function(error, data) {
+                info = data;
             });
-            d3.select('#svg1 .texts').selectAll('text').attr('class', function(d) {
-                if (d.id.toLowerCase().indexOf(name.toLowerCase()) >= 0) {
-                    return '';
-                } else {
-                    return 'inactive';
-                }
-            });
-            d3.select("#svg1 .links").selectAll('line').attr('class', function(d) {
-                return 'inactive';
-            });
-        }
-    });
-    
-    var info;
-
-    d3.json("/data2", function(error, data) {
-        info = data;
-    });
-});
-</script>
-
-
-</div>
-
+        });
+        </script>
+    </div>
 </body>
+
 </html>
